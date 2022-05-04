@@ -317,6 +317,9 @@ NSString *const kMessagingPresentationOptionsUserDefaults =
   // Forward on to any other delegates amd allow them to control presentation behavior.
   if (_originalNotificationCenterDelegate != nil &&
       _originalNotificationCenterDelegateRespondsTo.willPresentNotification) {
+      // TODO(tek): in an ideal world, this would check if completionHandler was called, and if so, if it was called
+      //   with [] or UNNotificationPresentationOptionNone (don't show) as a parameter, run the code in the else block
+      //   below.
     [_originalNotificationCenterDelegate userNotificationCenter:center
                                         willPresentNotification:notification
                                           withCompletionHandler:completionHandler];
